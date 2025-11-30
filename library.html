@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Library • APS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-bar">
+        <div class="brand">
+            <div class="logo">A</div>
+            <strong>Aurora Public School</strong>
+        </div>
+        <nav>
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="vision.html">Vision</a>
+            <a href="admissions.html">Admissions</a><a href="academics.html">Academics</a><a href="achievements.html">Achievements</a>
+            <a href="students.html">Student Life</a><a href="faculty.html">Faculty</a><a href="events.html">Events</a>
+            <a href="hostel.html">Hostel</a><a href="library.html" class="active">Library</a> <!-- Set active class -->
+            <a href="gallery.html">Gallery</a><a href="notices.html">Notices</a><a href="contact.html">Contact</a>
+        </nav>
+        <a class="btn" href="login.html">Login</a>
+    </div>
+</header>
+
+<main>
+    <section class="section container fade-in">
+        <h1>The APS Knowledge Hub</h1>
+        <p class="lead">Our library is a vibrant learning space—a modern sanctuary designed to support both academic rigor and recreational reading.</p>
+
+        <div class="library-hero">
+            <div class="library-image-placeholder">
+                <p>Welcome to the Library!</p>
+            </div>
+            <div class="stats-card">
+                <h3>Quick Facts</h3>
+                <ul>
+                    <li><strong>Total Volumes:</strong> 15,000+</li>
+                    <li><strong>E-Resources:</strong> Digital Subscription Portal</li>
+                    <li><strong>Operating Hours:</strong> 8:30 AM – 4:30 PM (School Days)</li>
+                    <li><strong>Librarian:</strong> Ms. Priti S.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section container fade-in" style="padding-top: 0;">
+        <h2>Key Collections & Features</h2>
+        <div class="grid grid-3">
+            <div class="card feature-card">
+                <h3>The Digital Corner</h3>
+                <p>Access our vast collection of e-books, academic journals, and research databases on dedicated terminals.</p>
+                <span class="small">Interactive learning spaces.</span>
+            </div>
+            <div class="card feature-card">
+                <h3>Reference Section</h3>
+                <p>A comprehensive array of encyclopedias, atlases, and subject-specific guides for in-depth research.</p>
+                <span class="small">Non-issuable material.</span>
+            </div>
+            <div class="card feature-card">
+                <h3>Periodicals & Magazines</h3>
+                <p>A continuous supply of the latest national newspapers, academic journals, and general interest magazines.</p>
+                <span class="small">Stay up-to-date with current affairs.</span>
+            </div>
+        </div>
+    </section>
+  
+    <section class="section container fade-in" style="padding-top: 0;">
+        <h2>Borrowing Rules</h2>
+        <div class="card" style="max-width: 800px; margin: auto; padding: 25px;">
+            <div class="grid grid-2">
+                <div>
+                    <h4 style="color: #4b0082;">Lending Limits</h4>
+                    <p>Students can borrow up to two books at a time.</p>
+                </div>
+                <div>
+                    <h4 style="color: #4b0082;">Loan Period</h4>
+                    <p>The standard loan period for all circulating material is 14 days.</p>
+                </div>
+            </div>
+            <div style="margin-top: 15px; border-top: 1px dashed #eee; padding-top: 15px;">
+                <h4 style="color: #cc0000;">Late Fee Policy</h4>
+                <p>A nominal fine of ₹5 per day will be charged for books returned after the due date.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div><strong>Aurora Public School</strong></div>
+        <div class="small">© 2025</div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        fadeInElements.forEach((el, index) => {
+            setTimeout(() => {
+                el.classList.add('show');
+            }, 100 * index);
+        });
+    });
+</script>
+</body>
+</html>

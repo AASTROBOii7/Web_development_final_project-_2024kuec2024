@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Faculty • APS</title>
+    
+    <!-- Integrated CSS from notices.html and added specific faculty styles -->
+    <style>
+        /* Simple, readable CSS with small animations and a consistent theme */
+
+        /* ---- Base ---- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { font-family: Arial, Helvetica, sans-serif; color: #222; background: #f7f7f7; line-height: 1.6; }
+        a { color: #2a6fe8; text-decoration: none; }
+        img { max-width: 100%; display: block; border-radius: 8px; }
+        .container { width: 92%; max-width: 1100px; margin: auto; }
+        .small { font-size: 14px; color: #666; margin-top: 4px; } /* Updated font size */
+
+        /* ---- Header & Nav ---- */
+        header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid #e5e7eb; }
+        .header-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand .logo { width: 40px; height: 40px; border-radius: 8px; background: #2a7de1; color: #fff; display: grid; place-items: center; font-weight: 700; }
+        nav { display: flex; flex-wrap: wrap; gap: 8px; }
+        nav a { padding: 8px 12px; border-radius: 6px; color: #222; }
+        nav a:hover { background: #eaf1ff; }
+        nav a.active { background: #2a7de1; color: #fff; }
+
+        /* ---- Sections, grids, cards ---- */
+        .section { padding: 28px 0; }
+        .section h1, .section h2 { margin-bottom: 12px; }
+        .lead { font-size: 18px; color: #444; margin-bottom: 20px; }
+        .grid { display: grid; gap: 20px; } /* Increased gap for better spacing */
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; box-shadow: 0 1px 0 rgba(0,0,0,0.03); transition: transform .2s, box-shadow .2s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+        .card h3 { margin-bottom: 4px; color: #2a7de1; } /* Reduced margin */
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 999px; font-weight: 700; font-size: 12px; margin-bottom: 10px; }
+        
+        /* New style for faculty image slot */
+        .faculty-img-placeholder {
+            width: 100%;
+            height: 180px; /* Fixed height for image area */
+            background-color: #e0e7ff; /* Light blue background as placeholder */
+            border-radius: 8px;
+            margin-bottom: 12px;
+            
+            /* Simple SVG avatar placeholder */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="35" r="15" fill="%23a0b3ff"/><path fill="%23a0b3ff" d="M20 90 Q50 60 80 90 Z"/></svg>');
+            background-size: 80px 80px;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 1px solid #c3d4ff;
+        }
+        
+        /* Specific override for the Principal card layout on desktop */
+        .principal-card .faculty-img-placeholder {
+            height: 250px;
+            background-size: 100px 100px;
+        }
+
+        /* ---- Tables & forms ---- */
+        .table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e5e7eb; }
+        .table th, .table td { padding: 10px; border: 1px solid #e5e7eb; text-align: left; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cfd8e3; border-radius: 6px; margin-top: 6px; background: #fff; }
+        .btn { display: inline-block; padding: 9px 14px; border: 1px solid #cfd8e3; background: #fff; border-radius: 6px; cursor: pointer; transition: transform .15s; }
+        .btn:hover { transform: translateY(-1px); }
+        .btn.primary { background: #2a7de1; color: #fff; border: none; }
+
+        /* ---- Footer ---- */
+        footer { background: #1f2937; color: #d1d5db; margin-top: 40px; }
+        .footer-inner { display: grid; gap: 18px; padding: 22px 0; }
+        footer a { color: #9ec1ff; }
+
+        /* ---- Hero & image slots ---- */
+        .hero { display: grid; gap: 18px; align-items: center; }
+        .hero-img { position: relative; overflow: hidden; }
+        .hero-img img { width: 100%; height: auto; object-fit: cover; }
+
+        /* ---- Animations ---- */
+        .fade-in { opacity: 0; transform: translateY(10px); }
+        .fade-in.show { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; }
+
+        @keyframes floatUp { from { transform: translateY(6px) } to { transform: translateY(0) } }
+        .float { animation: floatUp .5s ease; }
+
+        .img-hover { transition: transform .25s, filter .25s; }
+        .img-hover:hover { transform: scale(1.02); filter: brightness(1.05); }
+
+        /* ---- Responsive ---- */
+        @media (min-width: 900px) {
+            .hero { grid-template-columns: 1.2fr .8fr; }
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 700px) {
+            /* On smaller screens, stack the principal card content */
+            .principal-card.grid-2 { grid-template-columns: 1fr; } 
+            .principal-card .faculty-img-placeholder { margin-bottom: 20px; }
+        }
+        @media (max-width: 600px) {
+            .grid-3 { grid-template-columns: 1fr; } /* Stack general faculty on small screens */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-bar">
+        <div class="brand">
+            <div class="logo">A</div>
+            <strong>Aurora Public School</strong>
+        </div>
+        <nav>
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="vision.html">Vision</a>
+            <a href="admissions.html">Admissions</a><a href="academics.html">Academics</a><a href="achievements.html">Achievements</a>
+            <a href="students.html">Student Life</a><a href="faculty.html" class="active">Faculty</a> <!-- Set active class here -->
+            <a href="events.html">Events</a><a href="hostel.html">Hostel</a><a href="library.html">Library</a>
+            <a href="gallery.html">Gallery</a><a href="notices.html">Notices</a><a href="contact.html">Contact</a>
+        </nav>
+        <a class="btn" href="login.html">Login</a>
+    </div>
+</header>
+
+<main>
+    <section class="section container fade-in" style="padding-bottom: 10px;">
+        <h1>Our Faculty</h1>
+        <p class="lead">The strength of Aurora Public School lies in our exceptional faculty—a passionate, diverse, and dedicated team of educators committed to nurturing intellectual curiosity and personal growth in every student.
+<br>
+Our teachers are not just subject matter experts; they are mentors, innovators, and lifelong learners. Collectively, they bring decades of experience across all major academic disciplines, often holding advanced degrees in their fields. This blend of expertise ensures that curriculum delivery is both rigorous and relevant, encouraging students to excel in core academics while developing critical thinking and problem-solving skills.
+<br>
+We pride ourselves on our faculty's approachable nature and their commitment to personalized education. Every teacher strives to understand the unique potential and challenges of each student, offering tailored support and guidance. From the laboratory to the athletic field, the APS faculty creates an engaging and supportive environment where students are empowered to achieve their highest academic and personal aspirations.</p>
+    </section>
+
+
+    <section class="section container fade-in" style="padding-top: 0;">
+        <div class="card principal-card grid grid-2 fade-in" style="max-width: 750px; margin: 20px auto; padding: 30px;">
+            <div class="faculty-img-placeholder" style="height: 250px; background-size: 100px 100px;" title="Placeholder for Dr. Eleanor Vance's photo">
+            </div>
+            <div>
+                <h3 style="font-size: 24px;">Dr. Eleanor Vance</h3>
+                <p class="lead" style="color: #4b0082; margin-bottom: 5px;">Principal & Head of School</p>
+                <p class="small" style="font-size: 14px; color: #444; margin-top: 10px;">
+                    Dr. Vance brings 25 years of experience in educational leadership, focusing on curriculum innovation, student-centric learning, and strategic development. She holds a Ph.D. in Educational Policy.
+                </p>
+                <a href="#" style="display: block; margin-top: 15px; font-weight: bold;">Message from the Principal &rarr;</a>
+            </div>
+        </div>
+    </section>
+    <section class="section container fade-in" style="padding-top: 10px;">
+        <h2>Academic Staff</h2>
+        <div class="grid grid-3">
+
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for Anita Rao's photo">
+
+                </div>
+                <h3>Anita Rao</h3>
+                <p class="small">Physics • HOD Science</p>
+                <p class="small">Experience: 12 years</p>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for Rahul Mehta's photo"></div>
+                <h3>Rahul Mehta</h3>
+                <p class="small">Mathematics • Senior Coordinator</p>
+                <p class="small">Experience: 10 years</p>
+            </div>
+ 
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for Saba Khan's photo"></div>
+                <h3>Saba Khan</h3>
+                <p class="small">English Literature • Academic Dean</p>
+                <p class="small">Experience: 9 years</p>
+            </div>
+      
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for Kiran Patel's photo"></div>
+                <h3>Kiran Patel</h3>
+                <p class="small">Computer Science • IT Lead</p>
+                <p class="small">Experience: 8 years</p>
+            </div>
+ 
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for V. Srinivas's photo"></div>
+                <h3>V. Srinivas</h3>
+                <p class="small">Chemistry • Board Exam Specialist</p>
+                <p class="small">Experience: 14 years</p>
+            </div>
+            
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for Neha Sharma's photo"></div>
+                <h3>Neha Sharma</h3>
+                <p class="small">Biology • Student Mentor</p>
+                <p class="small">Experience: 11 years</p>
+            </div>
+
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for Dheeraj Singh's photo"></div>
+                <h3>Dheeraj Singh</h3>
+                <p class="small">History & Civics • Cultural Head</p>
+                <p class="small">Experience: 7 years</p>
+            </div>
+        
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for Aisha Ahmed's photo"></div>
+                <h3>Aisha Ahmed</h3>
+                <p class="small">Economics • Commerce Stream Lead</p>
+                <p class="small">Experience: 6 years</p>
+            </div>
+          
+            <div class="card fade-in">
+                <div class="faculty-img-placeholder" title="Placeholder for Ravi Kumar's photo"></div>
+                <h3>Ravi Kumar</h3>
+                <p class="small">Physical Education • Sports Coach</p>
+                <p class="small">Experience: 15 years</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div><strong>Aurora Public School</strong></div>
+        <div class="small">© 2025</div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        fadeInElements.forEach((el, index) => {
+            setTimeout(() => {
+                el.classList.add('show');
+            }, 100 * index);
+        });
+    });
+</script>
+</body>
+</html>

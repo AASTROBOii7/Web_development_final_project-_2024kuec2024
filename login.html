@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <title>Login • Aurora Public School</title>
+</head>
+<body>
+<header>
+  <div class="container header-bar">
+    <div class="brand">
+      <div class="logo">A</div>
+      <strong>Aurora Public School</strong>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="vision.html">Vision</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="academics.html">Academics</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="students.html">Student Life</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="events.html">Events</a>
+      <a href="hostel.html">Hostel</a>
+      <a href="library.html">Library</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="notices.html">Notices</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="btn" href="login.html">Login</a>
+  </div>
+</header>
+
+<main>
+  <section class="section container fade-in">
+    <h1>Login</h1>
+    <div class="card" style="max-width: 400px; margin: auto;">
+      <form id="loginForm">
+        <label>Username<input id="username" required></label><br><br>
+        <label>Password<input id="password" type="password" required></label><br><br>
+        <label>Role
+          <select id="role" required>
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+        </label><br><br>
+        <button class="btn primary" type="submit">Login</button>
+        <span class="small" id="lmsg"></span>
+      </form>
+      <p class="small" style="margin-top: 12px;">Not registered? <a href="signup.html">Sign up here</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div><strong>Aurora Public School</strong><br><span class="small">11, Knowledge Park, Bengaluru • +91 98765 43210 • info@auroraschool.edu.in</span></div>
+    <div class="small">© 2025 Aurora Public School • CBSE 12345</div>
+  </div>
+</footer>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
+    const msg = document.getElementById('lmsg');
+
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.username === username && u.password === password && u.role === role);
+
+    if (user) {
+      msg.textContent = 'Login successful!';
+      msg.style.color = 'green';
+      localStorage.setItem('loggedInUser', JSON.stringify(user));
+      if (user.role === 'student') {
+        window.location.href = 'student-profile.html';
+      } else if (user.role === 'teacher') {
+        window.location.href = 'teacher-dashboard.html';
+      } else {
+        window.location.href = 'index.html';
+      }
+    } else {
+      msg.textContent = 'Invalid credentials.';
+      msg.style.color = 'red';
+    }
+  });
+</script>
+<script src="main.js"></script>
+</body>
+</html>

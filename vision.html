@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vision & Mission • APS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-bar">
+        <div class="brand">
+            <div class="logo">A</div>
+            <strong>Aurora Public School</strong>
+        </div>
+        <nav>
+            <a href="index.html">Home</a><a href="about.html">About</a>
+            <a href="vision.html" class="active">Vision</a> 
+            <a href="admissions.html">Admissions</a><a href="academics.html">Academics</a><a href="achievements.html">Achievements</a>
+            <a href="students.html">Student Life</a><a href="faculty.html">Faculty</a><a href="events.html">Events</a>
+            <a href="hostel.html">Hostel</a><a href="library.html">Library</a><a href="gallery.html">Gallery</a>
+            <a href="notices.html">Notices</a><a href="contact.html">Contact</a>
+        </nav>
+        <a class="btn" href="login.html">Login</a>
+    </div>
+</header>
+
+<main>
+    <section class="section container fade-in" style="margin-bottom: 0;">
+        <h1>Our Vision</h1>
+        <p class="lead">
+            To be a premier educational institution, recognized globally for fostering transformative learning experiences, and empowering students to become ethical, innovative leaders who champion positive change in a dynamic world.
+        </p>
+
+        <div style="height: 3px; width: 60px; background-color: #2a7de1; margin: 30px auto 40px; border-radius: 2px;"></div>
+    </section>
+    
+    <section class="section container fade-in" style="padding-top: 0;">
+        <h2>Our Mission: Pillars of Growth</h2>
+        <p class="lead" style="margin-bottom: 25px;">
+            We are dedicated to fulfilling our vision through three core, interconnected mission pillars.
+        </p>
+        
+        <div class="grid grid-3">
+            
+            <div class="card" style="border-left: 5px solid #008000;">
+                <h3 style="color: #008000;">Academic Excellence & Innovation</h3>
+                <p>We commit to:</p>
+                <ul style="padding-left: 20px; font-size: 15px;">
+                    <li>Provide a rigorous, forward-thinking curriculum that integrates STEM, arts, and humanities.</li>
+                    <li>Cultivate critical thinking, creativity, and effective problem-solving skills.</li>
+                    <li>Embrace pedagogical innovation and technology to personalize learning pathways for diverse student needs.</li>
+                </ul>
+            </div>
+            
+            <div class="card" style="border-left: 5px solid #4b0082;">
+                <h3 style="color: #4b0082;">Character & Leadership Development</h3>
+                <p>We commit to:</p>
+                <ul style="padding-left: 20px; font-size: 15px;">
+                    <li>Instill core values: integrity, empathy, responsibility, and resilience.</li>
+                    <li>Develop strong moral compasses and a sense of social justice in every student.</li>
+                    <li>Promote leadership and collaborative skills through co-curricular and service-learning opportunities.</li>
+                </ul>
+            </div>
+            
+
+            <div class="card" style="border-left: 5px solid #cc0000;">
+                <h3 style="color: #cc0000;">Community & Global Perspective</h3>
+                <p>We commit to:</p>
+                <ul style="padding-left: 20px; font-size: 15px;">
+                    <li>Build a vibrant, inclusive school community where every member feels valued and supported.</li>
+                    <li>Foster global awareness and cross-cultural understanding, preparing students for an interconnected world.</li>
+                    <li>Engage actively with parents and the wider community as essential partners in the educational journey.</li>
+                </ul>
+            </div>
+            
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div><strong>Aurora Public School</strong></div>
+        <div class="small">© 2025</div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        fadeInElements.forEach((el, index) => {
+
+            setTimeout(() => {
+                el.classList.add('show');
+            }, 100 * index);
+        });
+    });
+</script>
+</body>
+</html>

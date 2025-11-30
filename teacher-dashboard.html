@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>Teacher Dashboard • APS</title>
+    <style>
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .form-section {
+            max-width: 600px;
+            margin: auto;
+        }
+        .assignments-list {
+            margin-top: 20px;
+        }
+        .assignment-item {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+  <div class="container header-bar">
+    <div class="brand">
+      <div class="logo">A</div>
+      <strong>Aurora Public School</strong>
+    </div>
+    <nav>
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="vision.html">Vision</a>
+      <a href="admissions.html">Admissions</a><a href="academics.html">Academics</a><a href="achievements.html">Achievements</a>
+      <a href="students.html">Student Life</a><a href="faculty.html">Faculty</a><a href="events.html">Events</a>
+      <a href="hostel.html">Hostel</a><a href="library.html">Library</a><a href="gallery.html">Gallery</a>
+      <a href="notices.html">Notices</a><a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn" href="#" onclick="logout()">Logout</a>
+    </div>
+  </div>
+</header>
+
+    <main>
+        <section class="section container">
+            <div class="dashboard-header">
+                <h1>Welcome, Teacher</h1>
+                <p class="lead">Your Teacher Dashboard</p>
+            </div>
+
+            <div class="section">
+                <h2>Enter Student Grades</h2>
+                <div class="card form-section">
+                    <form id="gradeForm">
+                        <label>Student Username<input id="studentUsername" required></label><br><br>
+                        <label>Subject
+                            <select id="subject" required>
+                                <option value="">Select Subject</option>
+                                <option value="Math">Math</option>
+                                <option value="English">English</option>
+                                <option value="Science">Science</option>
+                                <option value="History">History</option>
+                                <option value="PE">PE</option>
+                            </select>
+                        </label><br><br>
+                        <label>Grade
+                            <select id="grade" required>
+                                <option value="">Select Grade</option>
+                                <option value="A">A</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B">B</option>
+                                <option value="B-">B-</option>
+                                <option value="C+">C+</option>
+                                <option value="C">C</option>
+                                <option value="C-">C-</option>
+                            </select>
+                        </label><br><br>
+                        <label>Marks (0-100)<input id="marks" type="number" min="0" max="100" required></label><br><br>
+                        <button class="btn primary" type="submit">Submit Grade</button>
+                        <span class="small" id="gradeMsg"></span>
+                    </form>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Your Timetable</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timetable-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Assign Assignments</h2>
+                <div class="card form-section">
+                    <form id="assignmentForm">
+                        <label>Class
+                            <select id="class" required>
+                                <option value="">Select Class</option>
+                                <option value="10A">10A</option>
+                                <option value="10B">10B</option>
+                                <option value="9A">9A</option>
+                                <option value="9B">9B</option>
+                                <option value="8A">8A</option>
+                                <option value="8B">8B</option>
+                            </select>
+                        </label><br><br>
+                        <label>Subject
+                            <select id="assignmentSubject" required>
+                                <option value="">Select Subject</option>
+                                <option value="Math">Math</option>
+                                <option value="English">English</option>
+                                <option value="Science">Science</option>
+                                <option value="History">History</option>
+                                <option value="PE">PE</option>
+                            </select>
+                        </label><br><br>
+                        <label>Assignment Title<input id="assignmentTitle" required></label><br><br>
+                        <label>Description<textarea id="assignmentDescription" rows="3" required></textarea></label><br><br>
+                        <label>Due Date<input id="dueDate" type="date" required></label><br><br>
+                        <button class="btn primary" type="submit">Assign</button>
+                        <span class="small" id="assignmentMsg"></span>
+                    </form>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Recent Assignments</h2>
+                <div class="assignments-list" id="assignments-list">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <div><strong>Aurora Public School</strong></div>
+            <div class="small">© 2025</div>
+        </div>
+    </footer>
+
+    <script>
+        const sampleTimetable = {
+            '9:00-10:00': ['Math 10A', 'English 9B', 'Science 8A', 'History 10B', 'Math 9A'],
+            '10:00-11:00': ['English 10A', 'Math 9B', 'Math 8A', 'Science 10B', 'English 9A'],
+            '11:00-12:00': ['Science 10A', 'Science 9B', 'English 8A', 'Math 10B', 'Science 9A'],
+            '12:00-1:00': ['Lunch', 'Lunch', 'Lunch', 'Lunch', 'Lunch'],
+            '1:00-2:00': ['History 10A', 'History 9B', 'History 8A', 'English 10B', 'History 9A'],
+            '2:00-3:00': ['PE 10A', 'PE 9B', 'PE 8A', 'PE 10B', 'PE 9A']
+        };
+
+        function loadDashboard() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (!loggedInUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = JSON.parse(loggedInUser);
+            if (user.role !== 'teacher') {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const timetableBody = document.getElementById('timetable-body');
+            Object.keys(sampleTimetable).forEach(time => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${time}</td>` +
+                    sampleTimetable[time].map(subject => `<td>${subject}</td>`).join('');
+                timetableBody.appendChild(row);
+            });
+
+            loadAssignments();
+        }
+
+        function submitGrade(event) {
+            event.preventDefault();
+            const studentUsername = document.getElementById('studentUsername').value;
+            const subject = document.getElementById('subject').value;
+            const grade = document.getElementById('grade').value;
+            const marks = document.getElementById('marks').value;
+            const msg = document.getElementById('gradeMsg');
+
+            const grades = JSON.parse(localStorage.getItem('grades') || '[]');
+            grades.push({ studentUsername, subject, grade, marks });
+            localStorage.setItem('grades', JSON.stringify(grades));
+
+            msg.textContent = 'Grade submitted successfully!';
+            msg.style.color = 'green';
+            event.target.reset();
+        }
+
+        function assignAssignment(event) {
+            event.preventDefault();
+            const className = document.getElementById('class').value;
+            const subject = document.getElementById('assignmentSubject').value;
+            const title = document.getElementById('assignmentTitle').value;
+            const description = document.getElementById('assignmentDescription').value;
+            const dueDate = document.getElementById('dueDate').value;
+            const msg = document.getElementById('assignmentMsg');
+
+            const assignments = JSON.parse(localStorage.getItem('assignments') || '[]');
+            assignments.push({ className, subject, title, description, dueDate, dateAssigned: new Date().toISOString() });
+            localStorage.setItem('assignments', JSON.stringify(assignments));
+
+            msg.textContent = 'Assignment assigned successfully!';
+            msg.style.color = 'green';
+            event.target.reset();
+            loadAssignments();
+        }
+
+        function loadAssignments() {
+            const assignments = JSON.parse(localStorage.getItem('assignments') || '[]');
+            const assignmentsList = document.getElementById('assignments-list');
+            assignmentsList.innerHTML = '';
+
+            assignments.forEach(assignment => {
+                const item = document.createElement('div');
+                item.className = 'assignment-item';
+                item.innerHTML = `
+                    <h4>${assignment.title} (${assignment.subject} - ${assignment.className})</h4>
+                    <p>${assignment.description}</p>
+                    <p><strong>Due: ${new Date(assignment.dueDate).toLocaleDateString()}</strong></p>
+                `;
+                assignmentsList.appendChild(item);
+            });
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('gradeForm').addEventListener('submit', submitGrade);
+        document.getElementById('assignmentForm').addEventListener('submit', assignAssignment);
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+    </script>
+</body>
+</html>

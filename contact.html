@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css"><title>Contact • APS</title>
+</head>
+<body>
+<header><div class="container header-bar">
+  <div class="brand"><div class="logo">A</div><strong>Aurora Public School</strong></div>
+  <nav>
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="vision.html">Vision</a>
+    <a href="admissions.html">Admissions</a><a href="academics.html">Academics</a><a href="achievements.html">Achievements</a>
+    <a href="students.html">Student Life</a><a href="faculty.html">Faculty</a><a href="events.html">Events</a>
+    <a href="hostel.html">Hostel</a><a href="library.html">Library</a><a href="gallery.html">Gallery</a>
+    <a href="notices.html">Notices</a><a href="contact.html">Contact</a>
+  </nav>
+  <a class="btn" href="login.html">Login</a>
+</div></header>
+
+<main>
+  <section class="section container fade-in">
+    <h1>Contact Us</h1>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Write to Us</h3>
+        <form id="contactForm">
+          <label>Name<input required></label><br><br>
+          <label>Email<input type="email" required></label><br><br>
+          <label>Message<textarea rows="4" required></textarea></label><br><br>
+          <button class="btn primary">Send</button> <span class="small" id="cmsg"></span>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Visit</h3>
+        <p>11, Knowledge Park, Bengaluru, Karnataka 560001</p>
+        <p>Mon–Fri: 8:30 am – 4:30 pm</p>
+        <p>Phone: +91 98765 43210 • Email: info@auroraschool.edu.in</p>
+        <img src="campus-2.jpg" alt="School building" class="img-hover" style="margin-top:12px" data-lightbox>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container footer-inner"><div><strong>Aurora Public School</strong></div><div class="small">© 2025</div></div></footer>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('cmsg').textContent = ' Thank you! We will reply soon.';
+    this.reset();
+  });
+</script>
+<script src="main.js"></script>
+</body>
+</html>

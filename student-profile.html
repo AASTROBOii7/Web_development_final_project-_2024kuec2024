@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>Student Profile • APS</title>
+    <style>
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid #e5e7eb; }
+        .header-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+        .timetable, .grades {
+            margin-bottom: 40px;
+        }
+        .bar-graph {
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            height: 300px;
+            margin-top: 20px;
+        }
+        .bar {
+            width: 40px;
+            background-color: #2a7de1;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+        }
+        .bar-label {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: #2a7de1;
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-bar">
+            <div class="brand">
+                <div class="logo">A</div>
+                <strong>Aurora Public School</strong>
+            </div>
+            <nav>
+                <a href="index.html">Home</a><a href="about.html">About</a><a href="vision.html">Vision</a>
+                <a href="admissions.html">Admissions</a><a href="academics.html">Academics</a><a href="achievements.html">Achievements</a>
+                <a href="students.html">Student Life</a><a href="faculty.html">Faculty</a><a href="events.html">Events</a>
+                <a href="hostel.html">Hostel</a><a href="library.html">Library</a><a href="gallery.html">Gallery</a>
+                <a href="notices.html">Notices</a><a href="contact.html">Contact</a>
+            </nav>
+            <a class="btn logout-btn" href="#" onclick="logout()">Logout</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section container">
+            <div class="profile-header">
+                <h1>Welcome, <span id="username"></span></h1>
+                <p class="lead">Your Student Dashboard</p>
+            </div>
+
+            <div class="timetable">
+                <h2>Your Timetable</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timetable-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grades">
+                <h2>Your Grades</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Grade</th>
+                            <th>Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody id="grades-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bar-graph-section">
+                <h2>Marks Overview</h2><br><br>
+                <div class="bar-graph" id="bar-graph">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <div><strong>Aurora Public School</strong></div>
+            <div class="small">© 2025</div>
+        </div>
+    </footer>
+
+    <script>
+        const sampleTimetable = {
+            '9:00-10:00': ['Math', 'English', 'Science', 'History', 'Math'],
+            '10:00-11:00': ['English', 'Math', 'Math', 'Science', 'English'],
+            '11:00-12:00': ['Science', 'Science', 'English', 'Math', 'Science'],
+            '12:00-1:00': ['Lunch', 'Lunch', 'Lunch', 'Lunch', 'Lunch'],
+            '1:00-2:00': ['History', 'History', 'History', 'English', 'History'],
+            '2:00-3:00': ['PE', 'PE', 'PE', 'PE', 'PE']
+        };
+
+        const sampleGrades = [
+            { subject: 'Math', grade: 'A', marks: 95 },
+            { subject: 'English', grade: 'A-', marks: 88 },
+            { subject: 'Science', grade: 'B+', marks: 82 },
+            { subject: 'History', grade: 'A', marks: 92 },
+            { subject: 'PE', grade: 'A-', marks: 87 }
+        ];
+
+        function loadProfile() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (!loggedInUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = JSON.parse(loggedInUser);
+            document.getElementById('username').textContent = user.username;
+
+            const timetableBody = document.getElementById('timetable-body');
+            Object.keys(sampleTimetable).forEach(time => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${time}</td>` +
+                    sampleTimetable[time].map(subject => `<td>${subject}</td>`).join('');
+                timetableBody.appendChild(row);
+            });
+
+            const gradesBody = document.getElementById('grades-body');
+            sampleGrades.forEach(grade => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${grade.subject}</td>
+                    <td>${grade.grade}</td>
+                    <td>${grade.marks}</td>
+                `;
+                gradesBody.appendChild(row);
+            });
+
+            const barGraph = document.getElementById('bar-graph');
+            sampleGrades.forEach(grade => {
+                const barContainer = document.createElement('div');
+                barContainer.innerHTML = `
+                    <div class="bar" style="height: ${grade.marks * 3}px;">
+                        <div class="bar-value">${grade.marks}</div>
+                    </div>
+                    <div class="bar-label">${grade.subject}</div>
+                `;
+                barGraph.appendChild(barContainer);
+            });
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+</body>
+</html>

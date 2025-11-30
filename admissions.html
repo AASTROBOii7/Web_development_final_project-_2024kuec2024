@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css"><title>Admissions • APS</title>
+</head>
+<body>
+<header><div class="container header-bar">
+  <div class="brand"><div class="logo">A</div><strong>Aurora Public School</strong></div>
+  <nav>
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="vision.html">Vision</a>
+    <a href="admissions.html">Admissions</a><a href="academics.html">Academics</a><a href="achievements.html">Achievements</a>
+    <a href="students.html">Student Life</a><a href="faculty.html">Faculty</a><a href="events.html">Events</a>
+    <a href="hostel.html">Hostel</a><a href="library.html">Library</a><a href="gallery.html">Gallery</a>
+    <a href="notices.html">Notices</a><a href="contact.html">Contact</a>
+    </nav>
+    <a class="btn" href="login.html">Login</a>
+  </div></header>
+
+<main>
+  <section class="section container fade-in">
+    <h1>Admission Process</h1>
+    <ol style="padding-left:18px">
+      <li>Submit application form (online/offline).</li>
+      <li>Attend interaction/assessment (grade-wise).</li>
+      <li>Document and medical verification.</li>
+      <li>Confirm seat by paying the fee.</li>
+    </ol>
+  </section>
+
+  <section class="section container grid grid-2 fade-in">
+    <div class="card">
+      <h3>Apply Online</h3>
+      <form id="applyForm">
+        <label>Student Name<input required></label><br><br>
+        <label>Parent Email<input type="email" required></label><br><br>
+        <label>Class<select><option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option><option>VI</option><option>VII</option><option>VIII</option><option>IX</option><option>X</option><option>XI</option><option>XII</option></select></label><br><br>
+        <label>Message<textarea rows="3"></textarea></label><br><br>
+        <button class="btn primary" type="submit">Submit</button>
+        <span id="applyMsg" class="small"></span>
+      </form>
+    </div>
+    <div class="card">
+      <h3>Campus Tour</h3>
+      <p>Book a short tour to see classrooms, labs, and activity spaces.</p>
+      <img src="campus-1.jpg" alt="Campus tour" class="img-hover" data-lightbox>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container footer-inner"><div><strong>Aurora Public School</strong></div><div class="small">© 2025</div></div></footer>
+<script>
+  document.getElementById('applyForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('applyMsg').textContent = ' Application received. We will email you shortly.';
+    e.target.reset();
+  });
+</script>
+<script src="main.js"></script>
+</body>
+</html>

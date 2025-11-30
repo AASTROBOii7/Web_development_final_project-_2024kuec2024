@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Notices • APS</title>
+    <style>
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { font-family: Arial, Helvetica, sans-serif; color: #222; background: #f7f7f7; line-height: 1.6; }
+        a { color: #2a6fe8; text-decoration: none; }
+        img { max-width: 100%; display: block; border-radius: 8px; }
+        .container { width: 92%; max-width: 1100px; margin: auto; }
+        .small { font-size: 13px; color: #666; }
+
+        header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid #e5e7eb; }
+        .header-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand .logo { width: 40px; height: 40px; border-radius: 8px; background: #2a7de1; color: #fff; display: grid; place-items: center; font-weight: 700; }
+        nav { display: flex; flex-wrap: wrap; gap: 8px; }
+        nav a { padding: 8px 12px; border-radius: 6px; color: #222; }
+        nav a:hover { background: #eaf1ff; }
+        nav a.active { background: #2a7de1; color: #fff; }
+
+        .section { padding: 28px 0; }
+        .section h1, .section h2 { margin-bottom: 12px; }
+        .lead { font-size: 18px; color: #444; margin-bottom: 20px; }
+        .grid { display: grid; gap: 16px; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; box-shadow: 0 1px 0 rgba(0,0,0,0.03); transition: transform .2s, box-shadow .2s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+        .card h3 { margin-bottom: 8px; color: #2a7de1; }
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 999px; font-weight: 700; font-size: 12px; margin-bottom: 10px; }
+
+        .badge-meeting { background: #eaf1ff; color: #2a7de1; }
+        .badge-event { background: #fff0f0; color: #cc0000; }
+        .badge-admin { background: #fffae8; color: #ff8c00; }
+        .badge-sports { background: #e0f8e0; color: #008000; }
+        .badge-library { background: #e6f7ff; color: #0056b3; }
+        .badge-general { background: #ffe6f5; color: #b30086; }
+
+        .table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e5e7eb; }
+        .table th, .table td { padding: 10px; border: 1px solid #e5e7eb; text-align: left; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cfd8e3; border-radius: 6px; margin-top: 6px; background: #fff; }
+        .btn { display: inline-block; padding: 9px 14px; border: 1px solid #cfd8e3; background: #fff; border-radius: 6px; cursor: pointer; transition: transform .15s; }
+        .btn:hover { transform: translateY(-1px); }
+        .btn.primary { background: #2a7de1; color: #fff; border: none; }
+
+        footer { background: #1f2937; color: #d1d5db; margin-top: 40px; }
+        .footer-inner { display: grid; gap: 18px; padding: 22px 0; }
+        footer a { color: #9ec1ff; }
+
+        .hero { display: grid; gap: 18px; align-items: center; }
+        .hero-img { position: relative; overflow: hidden; }
+        .hero-img img { width: 100%; height: auto; object-fit: cover; }
+
+
+        .fade-in { opacity: 0; transform: translateY(10px); }
+        .fade-in.show { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; }
+
+        @keyframes floatUp { from { transform: translateY(6px) } to { transform: translateY(0) } }
+        .float { animation: floatUp .5s ease; }
+
+        .img-hover { transition: transform .25s, filter .25s; }
+        .img-hover:hover { transform: scale(1.02); filter: brightness(1.05); }
+
+        @media (min-width: 900px) {
+            .hero { grid-template-columns: 1.2fr .8fr; }
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-bar">
+        <div class="brand">
+            <div class="logo">A</div>
+            <strong>Aurora Public School</strong>
+        </div>
+        <nav>
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="vision.html">Vision</a>
+            <a href="admissions.html">Admissions</a><a href="academics.html">Academics</a><a href="achievements.html">Achievements</a>
+            <a href="students.html">Student Life</a><a href="faculty.html">Faculty</a><a href="events.html">Events</a>
+            <a href="hostel.html">Hostel</a><a href="library.html">Library</a><a href="gallery.html">Gallery</a>
+            <a href="notices.html" class="active">Notices</a><a href="contact.html">Contact</a>
+        </nav>
+        <a class="btn" href="login.html">Login</a>
+    </div>
+</header>
+
+<main>
+    <section class="section container">
+        <h1>Important School Notices</h1>
+        <p class="lead">Stay up-to-date with all the latest announcements and circulars.</p>
+
+        <div class="grid grid-3" style="margin-top: 30px;">
+
+            <div class="card fade-in">
+                <span class="badge badge-meeting">MEETING</span>
+                <h3>PTM on 20 Nov 2025</h3>
+                <p class="small">Mandatory Parent-Teacher Meeting for all classes. Registration for time slots is now open on the portal.</p>
+                <a href="#" style="display: block; margin-top: 10px; font-weight: bold;">Register Now &rarr;</a>
+            </div>
+
+            <div class="card fade-in">
+                <span class="badge badge-event">EVENT</span>
+                <h3>Annual Day Practice</h3>
+                <p class="small">The final detailed schedule for all drama and dance practices has been released. Check the school board for details.</p>
+                <a href="#" style="display: block; margin-top: 10px; font-weight: bold;">View Schedule &rarr;</a>
+            </div>
+
+            <div class="card fade-in">
+                <span class="badge badge-admin">ADMIN</span>
+                <h3>Q3 Fee Payment Reminder</h3>
+                <p class="small">Fees for Quarter 3 are due by November 30, 2025. Late payments will incur a penalty.</p>
+                <a href="#" style="display: block; margin-top: 10px; font-weight: bold;">Pay Online &rarr;</a>
+            </div>
+            
+            <div class="card fade-in">
+                <span class="badge badge-sports">SPORTS</span>
+                <h3>Zonal Athletic Trials</h3>
+                <p class="small">The list of students selected for Zonal athletic trials is published. Report to the P.T. instructor by Monday.</p>
+                <a href="#" style="display: block; margin-top: 10px; font-weight: bold;">View List &rarr;</a>
+            </div>
+            <div class="card fade-in">
+                <span class="badge badge-library">LIBRARY</span>
+                <h3>Book Submission Deadline</h3>
+                <p class="small">All long-term issue books must be returned by December 10 for annual inventory count.</p>
+                <a href="#" style="display: block; margin-top: 10px; font-weight: bold;">Check Due Date &rarr;</a>
+            </div>
+
+            <div class="card fade-in">
+                <span class="badge badge-general">GENERAL</span>
+                <h3>Diwali Break Schedule</h3>
+                <p class="small">School will observe a holiday from Oct 30 to Nov 5. Classes resume on Nov 6.</p>
+                <a href="#" style="display: block; margin-top: 10px; font-weight: bold;">Academic Calendar &rarr;</a>
+            </div>
+
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px; padding: 20px; background: #fff; border-radius: 12px; border: 1px solid #e5e7eb;">
+            <h2>Archived Notices</h2>
+            <p class="small">For older announcements, please visit the archive section.</p>
+            <a href="#" class="btn primary" style="margin-top: 15px; display: inline-block;">View Archives</a>
+        </div>
+        
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div><strong>Aurora Public School</strong></div>
+        <div class="small">© 2025</div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        fadeInElements.forEach((el, index) => {
+            setTimeout(() => {
+                el.classList.add('show');
+            }, 100 * index);
+        });
+    });
+</script>
+</body>
+</html>

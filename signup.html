@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <title>Sign Up • Aurora Public School</title>
+</head>
+<body>
+<header>
+  <div class="container header-bar">
+    <div class="brand">
+      <div class="logo">A</div>
+      <strong>Aurora Public School</strong>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="vision.html">Vision</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="academics.html">Academics</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="students.html">Student Life</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="events.html">Events</a>
+      <a href="hostel.html">Hostel</a>
+      <a href="library.html">Library</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="notices.html">Notices</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="btn" href="login.html">Login</a>
+  </div>
+</header>
+
+<main>
+  <section class="section container fade-in">
+    <h1>Sign Up</h1>
+    <div class="card" style="max-width: 400px; margin: auto;">
+      <form id="signupForm">
+        <label>Username<input id="username" required></label><br><br>
+        <label>Password<input id="password" type="password" required></label><br><br>
+        <label>Confirm Password<input id="confirmPassword" type="password" required></label><br><br>
+        <label>Role
+          <select id="role" required>
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+        </label><br><br>
+        <button class="btn primary" type="submit">Sign Up</button>
+        <span class="small" id="smsg"></span>
+      </form>
+      <p class="small" style="margin-top: 12px;">Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div><strong>Aurora Public School</strong><br><span class="small">11, Knowledge Park, Bengaluru • +91 98765 43210 • info@auroraschool.edu.in</span></div>
+    <div class="small">© 2025 Aurora Public School • CBSE 12345</div>
+  </div>
+</footer>
+<script>
+  document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const role = document.getElementById('role').value;
+    const msg = document.getElementById('smsg');
+
+    if (password !== confirmPassword) {
+      msg.textContent = 'Passwords do not match.';
+      msg.style.color = 'red';
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    if (users.find(u => u.username === username)) {
+      msg.textContent = 'Username already exists.';
+      msg.style.color = 'red';
+      return;
+    }
+
+    users.push({ username, password, role });
+    localStorage.setItem('users', JSON.stringify(users));
+    msg.textContent = 'Sign up successful! You can now login.';
+    msg.style.color = 'green';
+    this.reset();
+  });
+</script>
+<script src="main.js"></script>
+</body>
+</html>
