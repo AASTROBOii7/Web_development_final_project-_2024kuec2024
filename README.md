@@ -8,4 +8,4 @@ This static website for Aurora Public School uses HTML, CSS, and JavaScript. It 
 ## Login Description :
 Get registered as a new user and use those credentials for login.
 ## Deployment Link :
-aaaaaaaaaaaaaaa
+https://aastroboii7.github.io/Web_development_final_project-_2024kuec2024/admissions.html
